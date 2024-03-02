@@ -9,18 +9,18 @@ The only assertion library that works with [TinyGo](https://tinygo.org/).
 
 Features:
 
-* Zero dependencies
-* Pure Go
-* Works both with Go and TinyGo
-* A simple API inspired by [is](https://github.com/matryer/is) and [testify](https://github.com/stretchr/testify).
+* 🪶 Zero dependencies
+* 🐹 Pure Go
+* ✅ Works both with Go and TinyGo
+* 🧠 A simple API inspired by [is](https://github.com/matryer/is) and [testify](https://github.com/stretchr/testify)
 
-## Installation
+## 📦 Installation
 
 ```bash
 go get github.com/orsinium-labs/tinytest
 ```
 
-## Usage
+## 🔧 Usage
 
 ```go
 import (
@@ -62,7 +62,9 @@ t.Run("greet_joe", func(t *testing.T) {
 })
 ```
 
-## Known limitations
+📚 Check out [documentation](https://pkg.go.dev/github.com/orsinium-labs/tinytest) for the list of available assertions.
+
+## 🙅 Known limitations
 
 If you try to call `testing.T.FailNow` from TinyGo tests, you'll get the following error message:
 
