@@ -7,24 +7,25 @@ import (
 )
 
 func TestOk(t *testing.T) {
-	is.Equal(t, 1, 1)
-	is.Equal(t, true, true)
-	is.Equal(t, "ab", "ab")
+	c := is.New(t)
+	is.Equal(c, 1, 1)
+	is.Equal(c, true, true)
+	is.Equal(c, "ab", "ab")
 
-	is.NotEqual(t, 1, 2)
-	is.NotEqual(t, "ac", "ab")
-	is.NotEqual(t, "", "ab")
+	is.NotEqual(c, 1, 2)
+	is.NotEqual(c, "ac", "ab")
+	is.NotEqual(c, "", "ab")
 
-	is.True(t, true)
-	is.False(t, false)
+	is.True(c, true)
+	is.False(c, false)
 
-	is.Zero(t, 0)
-	is.Zero(t, false)
-	is.Zero(t, "")
+	is.Zero(c, 0)
+	is.Zero(c, false)
+	is.Zero(c, "")
 
-	is.SliceEqual(t, []int{1, 2, 3}, []int{1, 2, 3})
+	is.SliceEqual(c, []int{1, 2, 3}, []int{1, 2, 3})
 
-	is.Panics(t, func() { panic("oh no") })
+	is.Panic(c, func() { panic("oh no") })
 
-	is.NotPanics(t, func() { _ = 1 + 2 })
+	is.NotPanic(c, func() { _ = 1 + 2 })
 }
