@@ -12,6 +12,9 @@ func fail(t *testing.T, msg string, args ...any) {
 		farg := fmt.Sprintf("%#v", arg)
 		if len(farg) > 40 {
 			farg = fmt.Sprintf("%v", arg)
+			if len(farg) > 40 {
+				farg = farg[:20] + "<…>" + farg[len(farg)-20:]
+			}
 		}
 		fargs[i] = farg
 	}
@@ -48,4 +51,23 @@ func False(t *testing.T, ok bool) {
 func Zero[V comparable](t *testing.T, v V) {
 	t.Helper()
 	assert(v == *new(V), t, "%s must be zero", v)
+}
+
+func Panics(t *testing.T, f func()) {
+	t.Helper()
+	defer func() {
+		_ = recover()
+	}()
+	f()
+	fail(t, "%s must panic", f)
+}
+
+func NotPanics(t *testing.T, f func()) {
+	t.Helper()
+	defer func() {
+		t.Helper()
+		p := recover()
+		assert(p == nil, t, "%s must not panic", f)
+	}()
+	f()
 }
