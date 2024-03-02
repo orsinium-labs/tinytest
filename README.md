@@ -62,7 +62,7 @@ t.Run("greet_joe", func(t *testing.T) {
 })
 ```
 
-📚 Check out [documentation](https://pkg.go.dev/github.com/orsinium-labs/tinytest) for the list of available assertions.
+📚 Check out [documentation](https://pkg.go.dev/github.com/orsinium-labs/tinytest/is) for the list of available assertions.
 
 ## 🙅 Known limitations
 
