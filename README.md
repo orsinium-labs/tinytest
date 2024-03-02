@@ -72,7 +72,7 @@ If you try to call `testing.T.FailNow` from TinyGo tests, you'll get the followi
 FailNow is incomplete, requires runtime.Goexit()
 ```
 
-Which means that currently calling `FailNow` does not interrupt the tests. For this reason, tinytest provide only `NewRelaxed` function that configures tinygo to use `Fail` instead of `FailNow` and do not interrupt tests on failures. In future versions, we might to find a workaround for this limitation and then tinytest will also provide a `New` function that interrupts the tests immediately.
+Which means that currently calling `FailNow` does not interrupt the tests. For this reason, tinytest provides only `NewRelaxed` function that configures all assertions to use `Fail` instead of `FailNow` and do not interrupt tests on failures. In future versions, we might to find a workaround for this limitation and then tinytest will also provide a `New` function that interrupts the tests immediately.
 
 As a workaround, you can explicitly check at critical points if the test has failed and interrupt execution:
 
