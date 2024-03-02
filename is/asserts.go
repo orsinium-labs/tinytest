@@ -2,44 +2,25 @@ package is
 
 func Equal[V comparable](c *config, a, b V) {
 	c.hide()
-	assert(a == b, c, "%s must be equal to %s", a, b)
-}
-
-func NotEqual[V comparable](c *config, a, b V) {
-	c.hide()
-	assert(a != b, c, "%s must not be equal to %s", a, b)
+	assert(a == b, c, "%s != %s", "%s == %s", a, b)
 }
 
 func True(c *config, ok bool) {
 	c.hide()
-	assert(ok, c, "must be true")
-}
-
-func False(c *config, ok bool) {
-	c.hide()
-	assert(!ok, c, "must be false")
+	assert(ok, c, "is not true", "is true")
 }
 
 func Zero[V comparable](c *config, v V) {
 	c.hide()
-	assert(v == *new(V), c, "%s must be zero", v)
+	assert(v == *new(V), c, "%s is not zero", "%s is zero", v)
 }
 
 func Panic(c *config, f func()) {
 	c.hide()
 	defer func() {
-		_ = recover()
-	}()
-	f()
-	fail(c, "%s must panic", f)
-}
-
-func NotPanic(c *config, f func()) {
-	c.hide()
-	defer func() {
 		c.hide()
 		p := recover()
-		assert(p == nil, c, "%s must not panic", f)
+		assert(p != nil, c, "%s does not panic", "%s panics", f)
 	}()
 	f()
 }

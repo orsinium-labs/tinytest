@@ -14,6 +14,9 @@ type T interface {
 	// FailNow marks the test as failed and immediately interrupts execution.
 	FailNow()
 
+	// True if the test is already marked as failed.
+	Failed() bool
+
 	// Helper marks a function as a helper function.
 	//
 	// Helper functions are not included in tracebacks.
@@ -29,6 +32,8 @@ type config struct {
 	t T
 	// fail marks the test as failed an possibly stops its execution.
 	fail func()
+	// not reverses the checked condition
+	not bool
 }
 
 // hide the current frame drom the traceback.
@@ -43,7 +48,13 @@ func (c config) hide() {
 // }
 
 func NewRelaxed(t T) *config {
-	return &config{t, t.Fail}
+	return &config{t, t.Fail, false}
+}
+
+func Not(c *config) *config {
+	r := *c
+	r.not = true
+	return &r
 }
 
 // fail formats an logs the given error message and possibly interrupts the test.
@@ -65,9 +76,15 @@ func fail(c *config, msg string, args ...any) {
 }
 
 // assert marks the test as failed if the given condition is false
-func assert(ok bool, c *config, msg string, args ...any) {
+func assert(ok bool, c *config, msg, msgNot string, args ...any) {
 	c.hide()
-	if !ok {
-		fail(c, msg, args...)
+	if c.not {
+		if ok {
+			fail(c, msgNot, args...)
+		}
+	} else {
+		if !ok {
+			fail(c, msg, args...)
+		}
 	}
 }

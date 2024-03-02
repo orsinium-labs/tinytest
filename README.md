@@ -40,7 +40,14 @@ Running tests:
 tinygo ./...
 ```
 
-Want to provide a custom error message? Use [t.Log](https://pkg.go.dev/testing#T.Log) or [t.Logf](https://pkg.go.dev/testing#T.Logf):
+If you want to negate the check, wrap `c` into `is.Not`:
+
+```go
+// asserts that the string is not empty
+is.Equal(is.Not(c), hello(), "")
+```
+
+If you want to provide an additional error message, use [t.Log](https://pkg.go.dev/testing#T.Log) or [t.Logf](https://pkg.go.dev/testing#T.Logf):
 
 ```go
 t.Log("greet Joe")
