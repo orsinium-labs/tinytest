@@ -21,10 +21,10 @@ func TestOk(t *testing.T) {
 	is.True(c, true)
 	is.True(is.Not(c), false)
 
-	is.Zero(c, 0)
-	is.Zero(c, false)
-	is.Zero(c, "")
-	is.Zero(is.Not(c), "a")
+	is.Default(c, 0)
+	is.Default(c, false)
+	is.Default(c, "")
+	is.Default(is.Not(c), "a")
 
 	is.SliceEqual(c, []int{1, 2, 3}, []int{1, 2, 3})
 

@@ -19,6 +19,7 @@ func SliceContains[S ~[]I, I comparable](c *config, s S, v I) {
 	assert(found, c, "%s does not contain %s", "%s contains %s", s, v)
 }
 
+// Assert that the given slices are equal (the smae length and the same elements).
 func SliceEqual[S1 ~[]I, S2 ~[]I, I comparable](c *config, s1 S1, s2 S2) {
 	c.hide()
 	assert(

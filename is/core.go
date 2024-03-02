@@ -47,10 +47,14 @@ func (c config) hide() {
 // 	return &config{t, t.FailNow}
 // }
 
+// NewRelaxed creates tinytest config that does not stop test execution on failed assertions.
+//
+// A version of this function that does stop the execution will be provided in later releases.
 func NewRelaxed(t T) *config {
 	return &config{t, t.Fail, false}
 }
 
+// Not negates the assertion that uses the wrapped config.
 func Not(c *config) *config {
 	r := *c
 	r.not = true
