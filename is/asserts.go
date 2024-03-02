@@ -15,6 +15,14 @@ func Zero[V comparable](c *config, v V) {
 	assert(v == *new(V), c, "%s is not zero", "%s is zero", v)
 }
 
+func NilPointer[V any](c *config, v *V) {
+	assert(v == nil, c, "%s is not nil", "%s is nil", v)
+}
+
+func Err(c *config, err error) {
+	assert(err != nil, c, "%s is nil error", "%s is error", err)
+}
+
 func Panic(c *config, f func()) {
 	c.hide()
 	defer func() {

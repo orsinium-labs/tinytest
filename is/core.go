@@ -71,7 +71,7 @@ func fail(c *config, msg string, args ...any) {
 		}
 		fargs[i] = farg
 	}
-	c.t.Logf(msg, fargs...)
+	c.t.Logf(msg+" (but it shouldn't)", fargs...)
 	c.fail()
 }
 
