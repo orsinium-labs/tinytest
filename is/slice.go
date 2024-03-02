@@ -1,15 +1,18 @@
 package is
 
+// Assert that the given slice is empty
 func SliceEmpty[S ~[]I, I any](c *config, s S) {
 	c.hide()
 	assert(len(s) == 0, c, "%s must be empty", s)
 }
 
+// Assert that the given slice is not empty
 func SliceNotEmpty[S ~[]I, I any](c *config, s S) {
 	c.hide()
 	assert(len(s) != 0, c, "%s must not be empty", s)
 }
 
+// Assert that the given slice contains the given element.
 func SliceContains[S ~[]I, I comparable](c *config, s S, v I) {
 	c.hide()
 	for _, el := range s {
@@ -20,6 +23,7 @@ func SliceContains[S ~[]I, I comparable](c *config, s S, v I) {
 	fail(c, "%s must contain %s", s, v)
 }
 
+// Assert that the given slice does not contain the given element.
 func SliceNotContains[S ~[]I, I comparable](c *config, s S, v I) {
 	c.hide()
 	for _, el := range s {

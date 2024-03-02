@@ -7,7 +7,7 @@ import (
 )
 
 func TestOk(t *testing.T) {
-	c := is.New(t)
+	c := is.NewRelaxed(t)
 	is.Equal(c, 1, 1)
 	is.Equal(c, true, true)
 	is.Equal(c, "ab", "ab")
